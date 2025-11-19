@@ -20,6 +20,12 @@ export default function App() {
     setShowClickVideo(false);
   };
 
+  // Scroll simple vers "stand" (tu pourras remplacer plus tard par une vraie page Stand)
+  const goToStand = () => {
+    const el = document.getElementById("stand-section");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="cn-page" onClick={handlePageClick}>
       {/* Vidéo d'accueil */}
@@ -49,9 +55,49 @@ export default function App() {
         </div>
       )}
 
-      {/* SI showStore = false -> page d'accueil, SINON -> page Store */}
+      {/* MENU PERMANENT */}
+      <header
+        className="cn-nav"
+        onClick={(e) => e.stopPropagation()}
+      >
+      <div
+        className="cn-nav-brand"
+        onClick={(e) => {
+          e.stopPropagation();
+          setShowStore(false);
+        }}
+        style={{ cursor: "pointer" }}
+      >
+        <img
+          src={logo}
+          alt="Cali'nous logo mini"
+          className="cn-nav-logo-mini"
+        />
+        <span className="cn-nav-gold">Cali’nous</span>
+      </div>
+<nav className="cn-nav-links">
+  <button className="cn-nav-link" onClick={() => setShowStore(false)}>
+    Accueil
+  </button>
+  <button className="cn-nav-link" onClick={() => setShowStore(true)}>
+    Boutique
+  </button>
+  <button className="cn-nav-link" onClick={goToStand}>
+    Stand
+  </button>
+  <button className="cn-nav-link" onClick={() => alert("Fonction Contact à venir !")}>
+    Contact
+  </button>
+</nav>
+
+      </header>
+
+      {/* CONTENU : soit Accueil, soit Store */}
       {!showStore ? (
-        <main className="cn-hero">
+        <main
+          className="cn-hero"
+          onClick={(e) => e.stopPropagation()} // clic sur le contenu = pas de vidéo clic
+        >
           <div className="cn-logo-wrapper">
             <img
               src={logo}
@@ -69,24 +115,33 @@ export default function App() {
             <button
               className="cn-btn cn-btn-main"
               onClick={(e) => {
-                e.stopPropagation(); // évite de relancer la vidéo clic si tu veux
+                e.stopPropagation();
                 setShowStore(true);
               }}
             >
               Découvrir les bonbons
             </button>
-            <button className="cn-btn cn-btn-ghost">
+            <button
+              className="cn-btn cn-btn-ghost"
+              onClick={(e) => {
+                e.stopPropagation();
+                goToStand();
+              }}
+            >
               Trouver notre stand
             </button>
           </div>
 
-          <p className="cn-tagline">
+          <p className="cn-tagline" id="stand-section">
             Livraison gourmande &amp; stands festifs en Guadeloupe ✨
           </p>
         </main>
       ) : (
-        <Store onBack={() => setShowStore(false)} />
+        <Store
+          onBack={() => setShowStore(false)}
+        />
       )}
     </div>
   );
 }
+

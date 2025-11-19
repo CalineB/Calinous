@@ -9,7 +9,9 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -18,12 +20,14 @@ body {
   background: #050816;
 }
 
+
 /* PAGE GLOBALE */
 
 .cn-page {
   min-height: 100vh;
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto; 
+  overflow-x: hidden;
   position: relative;
 
   /* Fond en cercle plus pâle pour que les bonbons ressortent */
@@ -234,6 +238,71 @@ body {
   }
 }
 
+/* Menu */
+.cn-nav {
+  position: fixed;
+  top: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, 100% - 2rem);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.35);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cn-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.cn-nav-gold {
+  background: linear-gradient(135deg, #f9d976, #f39f18);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.cn-nav-logo-mini {
+  width: 28px;
+  height: 28px;
+}
+
+.cn-nav-links {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.cn-nav-link {
+  border: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f3f4ff;
+  color: #64748b;
+  transition: 0.18s ease;
+}
+
+.cn-nav-link:hover {
+  background: #ffe4f7;
+  color: #ec4899;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(236, 72, 153, 0.35);
+}
+
+
 
 /* Store Page */
 
@@ -250,6 +319,9 @@ body {
   backdrop-filter: blur(12px);
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
   margin: 2rem auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 4rem;
 }
 
 .store-header {
@@ -436,6 +508,64 @@ body {
   margin-bottom: 1rem;
   transition: 0.2s ease;
   box-shadow: 0 8px 18px rgba(148, 163, 184, 0.25);
+}
+
+.store-back-btn:hover {
+  background: #ffe4f7;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(236, 72, 153, 0.4);
+}
+
+
+.store-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  margin: 4.5rem auto 2rem; /* on laisse de la place pour le nav */
+}
+
+/* Bouton retour */
+.store-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #fecdd3;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  color: #ec4899;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transition: 0.2s ease;
+  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.25);
+}
+
+/* Ourson doré */
+.store-back-bear img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Squish */
+@keyframes store-squish {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scaleX(1.08) scaleY(0.9);
+  }
+  60% {
+    transform: scaleX(0.96) scaleY(1.05);
+  }
+}
+
+.store-back-btn-squish {
+  animation: store-squish 2.4s ease-in-out infinite;
 }
 
 .store-back-btn:hover {
