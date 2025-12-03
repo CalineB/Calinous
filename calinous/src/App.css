@@ -728,3 +728,144 @@ body {
     transition: .2s;
   }
 }
+
+
+/* === NAV GUMMI AVEC BOUTON MOBILE === */
+
+/* Header : pill centré, logo à gauche, nav à droite */
+.cn-nav {
+  position: fixed;
+  top: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, 100% - 2rem);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.35);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* bloc gauche : ourson + Cali’nous */
+.cn-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.cn-nav-logo-mini {
+  width: 28px;
+  height: 28px;
+}
+
+.cn-nav-gold {
+  background: linear-gradient(135deg, #f9d976, #f39f18);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* bloc droite : bouton + nav */
+.cn-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* bouton mobile (hidden desktop) */
+.cn-nav-toggle {
+  display: none;
+  border: none;
+  background: #ff66b3;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 102, 179, 0.6);
+}
+
+/* nav desktop */
+.cn-nav-links {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+/* boutons */
+.cn-nav-link {
+  border: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #ff4f9a;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease, color 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.cn-nav-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* actif */
+.cn-nav-link.is-active {
+  background: #ff66b3;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(255, 102, 179, 0.6);
+}
+
+/* === RESPONSIVE MOBILE === */
+@media (max-width: 768px) {
+  .cn-nav {
+    width: calc(100% - 1.5rem);
+    padding-inline: 0.7rem;
+  }
+
+  .cn-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* nav cachée par défaut sur mobile */
+  .cn-nav-links {
+    position: absolute;
+    top: 3.2rem;
+    right: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 0.7rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* nav ouverte quand .is-open ajouté en JS */
+  .cn-nav-links.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .cn-nav-link {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

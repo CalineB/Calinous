@@ -11,7 +11,7 @@ export default function App() {
 
   // "home" | "store" | "stand" | "contact"
   const [currentPage, setCurrentPage] = useState("home");
-  const [isNavOpen, setIsNavOpen] = useState(false);
+    const [isNavOpen, setIsNavOpen] = useState(false);
 
 
   const handlePageClick = () => {
@@ -74,7 +74,7 @@ export default function App() {
   className="cn-nav"
   onClick={(e) => e.stopPropagation()}
 >
-  {/* GAUCHE : nounours / logo + texte Cali’nous */}
+  {/* GAUCHE : nounours / logo + nom */}
   <div
     className="cn-nav-brand"
     onClick={(e) => {
@@ -82,18 +82,19 @@ export default function App() {
       setCurrentPage("home");
       setIsNavOpen(false);
     }}
+    style={{ cursor: "pointer" }}
   >
     <img
       src={logo}
-      alt="Logo Cali'nous"
+      alt="Cali'nous logo mini"
       className="cn-nav-logo-mini"
     />
     <span className="cn-nav-gold">Cali’nous</span>
   </div>
 
-  {/* DROITE : bouton bonbons + nav */}
+  {/* DROITE : bouton mobile + nav */}
   <div className="cn-nav-right">
-    {/* bouton mobile */}
+    {/* bouton mobile 🍬 */}
     <button
       className="cn-nav-toggle"
       onClick={(e) => {
@@ -163,6 +164,7 @@ export default function App() {
     </nav>
   </div>
 </header>
+
 
 
 
