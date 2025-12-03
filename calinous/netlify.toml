@@ -1,3 +1,4 @@
 [build]
+base = "calinous"
 command = "npm run build"
-publish = "build"
+publish = "dist"
